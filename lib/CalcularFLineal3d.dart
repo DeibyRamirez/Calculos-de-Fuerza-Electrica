@@ -730,7 +730,7 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
           if (carga1 < carga2 && carga3 > carga2 && fuerzaresultanteC3 > 0) {
             resultante3d = 'assets/Caso_Resul_(+)_(-,+,+)_respecto_C3.glb';
           } else {
-            resultante3d = 'assets/Caso_Resul_(+)_(-,+,+)_respecto_C3.glb';
+            resultante3d = 'assets/Caso_Resul_(-)_(-,+,+)_respecto_C3.glb';
           }
         }
         if (carga1 < 0 && carga2 < 0 && carga3 > 0 && cargaTrabajar == 1) {
@@ -750,10 +750,10 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
           resultante3d = 'assets/Caso(-,-,-)_respecto_C1.glb';
         }
         if (carga1 < 0 && carga2 < 0 && carga3 < 0 && cargaTrabajar == 2) {
-          if (carga1 < carga2 && carga3 > carga2 && fuerzaresultanteC2 < 0) {
-            resultante3d = 'assets/Caso_Resul_(-)_(-,-,-)_respecto_C2.glb';
-          } else {
+          if (carga1 < carga2 && carga3 > carga2 && fuerzaresultanteC2 > 0) {
             resultante3d = 'assets/Caso_Resul_(+)_(-,-,-)_respecto_C2.glb';
+          } else {
+            resultante3d = 'assets/Caso_Resul_(-)_(-,-,-)_respecto_C2.glb';
           }
         }
         if (carga1 < 0 && carga2 < 0 && carga3 < 0 && cargaTrabajar == 3) {
@@ -763,10 +763,10 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
           resultante3d = 'assets/Caso(+,+,+)_respecto_C1.glb';
         }
         if (carga1 > 0 && carga2 > 0 && carga3 > 0 && cargaTrabajar == 2) {
-          if (carga1 < carga2 && carga3 > carga2 && fuerzaresultanteC2 < 0) {
-            resultante3d = 'assets/Caso_Resul_(-)_(+,+,+)_respecto_C2.glb';
-          } else {
+          if (carga1 < carga2 && carga3 > carga2 && fuerzaresultanteC2 > 0) {
             resultante3d = 'assets/Caso_Resul_(+)_(+,+,+)_respecto_C2.glb';
+          } else {
+            resultante3d = 'assets/Caso_Resul_(-)_(+,+,+)_respecto_C2.glb';
           }
         }
         if (carga1 > 0 && carga2 > 0 && carga3 > 0 && cargaTrabajar == 3) {
