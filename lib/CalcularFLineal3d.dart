@@ -20,6 +20,12 @@ class CalcularFLineal3d extends StatefulWidget {
   final String modelocarga3;
   final String combinacion3d;
 
+//Ahora para los calculos usaremos las cargas convertidas y para los modelos 3d las cargas normales...
+
+  final double carga1convertida;
+  final double carga2convertida;
+  final double carga3convertida;
+
   double fuerza12 = 0;
   double fuerza13 = 0;
   double fuerza23 = 0;
@@ -36,6 +42,9 @@ class CalcularFLineal3d extends StatefulWidget {
     required this.modelocarga2,
     required this.modelocarga3,
     required this.combinacion3d,
+    required this.carga1convertida,
+    required this.carga2convertida,
+    required this.carga3convertida,
   });
 
   @override
@@ -101,10 +110,10 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
   }
 
   void actualizarMensajes() {
-    double fuerza12 =
-        calcularFuerza(widget.carga1, widget.carga2, widget.distancia12);
-    double fuerza13 =
-        calcularFuerza(widget.carga1, widget.carga3, widget.distancia13);
+    double fuerza12 = calcularFuerza(
+        widget.carga1convertida, widget.carga2convertida, widget.distancia12);
+    double fuerza13 = calcularFuerza(
+        widget.carga1convertida, widget.carga3convertida, widget.distancia13);
 
     double fuerza12signo = fuerza12 * signo1;
     double fuerza13signo = fuerza13 * signo2;
@@ -121,10 +130,10 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     mensajeFresultanteC1 = "\nFuerza resultante: $fuerzaresultanteC1 N";
     ////////////////////////////////////////////
 
-    double fuerza21 =
-        calcularFuerza(widget.carga2, widget.carga1, widget.distancia12);
-    double fuerza23 =
-        calcularFuerza(widget.carga2, widget.carga3, widget.distancia23);
+    double fuerza21 = calcularFuerza(
+        widget.carga2convertida, widget.carga1convertida, widget.distancia12);
+    double fuerza23 = calcularFuerza(
+        widget.carga2convertida, widget.carga3convertida, widget.distancia23);
 
     double fuerza21signo = fuerza21 * signo1;
     double fuerza23signo = fuerza23 * signo2;
@@ -143,10 +152,10 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
 
     /////////////////////////////////////////////
 
-    double fuerza31 =
-        calcularFuerza(widget.carga3, widget.carga1, widget.distancia13);
-    double fuerza32 =
-        calcularFuerza(widget.carga3, widget.carga2, widget.distancia23);
+    double fuerza31 = calcularFuerza(
+        widget.carga3convertida, widget.carga1convertida, widget.distancia13);
+    double fuerza32 = calcularFuerza(
+        widget.carga3convertida, widget.carga2convertida, widget.distancia23);
 
     double fuerza31signo = fuerza31 * signo1;
     double fuerza32signo = fuerza32 * signo2;
