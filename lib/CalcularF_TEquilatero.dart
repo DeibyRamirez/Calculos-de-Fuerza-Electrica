@@ -18,21 +18,27 @@ class CalFuerzasIsosceles extends StatefulWidget {
   final String modelocarga3;
   final String combinacion3d;
   final String resultante3d;
+  final double carga1convertida;
+  final double carga2convertida;
+  final double carga3convertida;
 
-  const CalFuerzasIsosceles({
-    Key? key,
-    required this.cargaTrabajo,
-    required this.carga1,
-    required this.carga2,
-    required this.carga3,
-    required this.distancia,
-    required this.angulo,
-    required this.modelocarga1,
-    required this.modelocarga2,
-    required this.modelocarga3,
-    required this.combinacion3d,
-    required this.resultante3d,
-  }) : super(key: key);
+  const CalFuerzasIsosceles(
+      {Key? key,
+      required this.cargaTrabajo,
+      required this.carga1,
+      required this.carga2,
+      required this.carga3,
+      required this.distancia,
+      required this.angulo,
+      required this.modelocarga1,
+      required this.modelocarga2,
+      required this.modelocarga3,
+      required this.combinacion3d,
+      required this.resultante3d,
+      required this.carga1convertida,
+      required this.carga2convertida,
+      required this.carga3convertida})
+      : super(key: key);
 
   @override
   _CalFuerzasIsoscelesState createState() => _CalFuerzasIsoscelesState();
@@ -71,10 +77,10 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
   }
 
   void actualizarMensajes() {
-    double fuerza12 =
-        calcularFuerza(widget.carga1, widget.carga2, widget.distancia);
-    double fuerza13 =
-        calcularFuerza(widget.carga1, widget.carga3, widget.distancia);
+    double fuerza12 = calcularFuerza(
+        widget.carga1convertida, widget.carga2convertida, widget.distancia);
+    double fuerza13 = calcularFuerza(
+        widget.carga1convertida, widget.carga3convertida, widget.distancia);
 
     double f1componenteX = componentesX(fuerza12 * signoX1, widget.angulo);
     double f1componenteY = componentesY(fuerza12 * signoY1, widget.angulo);
@@ -99,10 +105,10 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     mensajeFresultanteC1 = "Fuerza resultante: $fuerzaresultante N";
     ////////////////////////////////////////////
 
-    double fuerza21 =
-        calcularFuerza(widget.carga1, widget.carga2, widget.distancia);
-    double fuerza23 =
-        calcularFuerza(widget.carga2, widget.carga3, widget.distancia);
+    double fuerza21 = calcularFuerza(
+        widget.carga1convertida, widget.carga2convertida, widget.distancia);
+    double fuerza23 = calcularFuerza(
+        widget.carga2convertida, widget.carga3convertida, widget.distancia);
 
     double f1componenteXC2 = componentesX(fuerza21 * signoX1, widget.angulo);
     double f1componenteYC2 = componentesY(fuerza21 * signoY1, widget.angulo);
@@ -129,10 +135,10 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
 
     /////////////////////////////////////////////
 
-    double fuerza31 =
-        calcularFuerza(widget.carga1, widget.carga3, widget.distancia);
-    double fuerza32 =
-        calcularFuerza(widget.carga2, widget.carga3, widget.distancia);
+    double fuerza31 = calcularFuerza(
+        widget.carga1convertida, widget.carga3convertida, widget.distancia);
+    double fuerza32 = calcularFuerza(
+        widget.carga2convertida, widget.carga3convertida, widget.distancia);
 
     double f1componenteXC3 = componentesX(fuerza31 * signoX1, widget.angulo);
     double f1componenteYC3 = componentesY(fuerza31 * signoY1, widget.angulo);

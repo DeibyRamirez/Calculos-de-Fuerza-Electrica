@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, use_super_parameters, avoid_print
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:graficos_dinamicos/CalcularF_TEquilatero.dart';
 import 'package:graficos_dinamicos/tabla_prefijos.dart';
@@ -24,6 +26,20 @@ class _EquilateroState extends State<Equilatero> {
   late String resultante3d =
       'assets/Resultante_Triangulo_EyR/Caso_Resul(+,+,+)_TE_respecto_C1.glb';
 
+//Creación y Uso de los prefijos...
+
+  static const prefijos = <String>['µC', 'nC', 'mC', 'pC'];
+  String? prefijoseleccionadoCarga1;
+  String? prefijoseleccionadoCarga2;
+  String? prefijoseleccionadoCarga3;
+
+// Dando el valor al nombre del prefijo...
+  static final Map<String, double> valoresPrefijos = {
+    'µC': pow(10, -6).toDouble(),
+    'nC': pow(10, -9).toDouble(),
+    'mC': pow(10, -3).toDouble(),
+    'pC': pow(10, -12).toDouble(),
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +74,24 @@ class _EquilateroState extends State<Equilatero> {
               "Digite los valores de las cargas, Coulombs (C):",
               style: TextStyle(fontSize: 18),
             ),
+            const SizedBox(height: 20),
+//Creamos el DropdownButton para permitir visializar las opcines de prefijos que tenemos disponibles...
+
+            DropdownButton<String>(
+              hint: const Text("Seleccione un prefijo (q1)"),
+              value: prefijoseleccionadoCarga1,
+              items: prefijos.map((String prefijo) {
+                return DropdownMenuItem<String>(
+                  value: prefijo,
+                  child: Text(prefijo),
+                );
+              }).toList(),
+              onChanged: (String? nuevoValor) {
+                setState(() {
+                  prefijoseleccionadoCarga1 = nuevoValor;
+                });
+              },
+            ),
             const SizedBox(height: 5),
             TextField(
               controller: carga1Controller,
@@ -67,6 +101,22 @@ class _EquilateroState extends State<Equilatero> {
                 border: OutlineInputBorder(),
               ),
             ),
+            const SizedBox(height: 20),
+            DropdownButton<String>(
+              hint: const Text("Seleccione un prefijo (q2)"),
+              value: prefijoseleccionadoCarga2,
+              items: prefijos.map((String prefijo) {
+                return DropdownMenuItem<String>(
+                  value: prefijo,
+                  child: Text(prefijo),
+                );
+              }).toList(),
+              onChanged: (String? nuevoValor) {
+                setState(() {
+                  prefijoseleccionadoCarga2 = nuevoValor;
+                });
+              },
+            ),
             const SizedBox(height: 10),
             TextField(
               controller: carga2Controller,
@@ -75,6 +125,22 @@ class _EquilateroState extends State<Equilatero> {
                 labelText: 'Carga 2 (q2)',
                 border: OutlineInputBorder(),
               ),
+            ),
+            const SizedBox(height: 20),
+            DropdownButton<String>(
+              hint: const Text("Seleccione un prefijo (q3)"),
+              value: prefijoseleccionadoCarga3,
+              items: prefijos.map((String prefijo) {
+                return DropdownMenuItem<String>(
+                  value: prefijo,
+                  child: Text(prefijo),
+                );
+              }).toList(),
+              onChanged: (String? nuevoValor) {
+                setState(() {
+                  prefijoseleccionadoCarga3 = nuevoValor;
+                });
+              },
             ),
             const SizedBox(height: 10),
             TextField(
@@ -121,9 +187,13 @@ class _EquilateroState extends State<Equilatero> {
                     carga2Controller.text.isEmpty ||
                     carga3Controller.text.isEmpty ||
                     distanciaController.text.isEmpty ||
-                    cargaTrabajoController.text.isEmpty) {
+                    cargaTrabajoController.text.isEmpty ||
+                    prefijoseleccionadoCarga1 == null ||
+                    prefijoseleccionadoCarga2 == null ||
+                    prefijoseleccionadoCarga3 == null) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('Por favor complete todos los campos.'),
+                    content: Text(
+                        'Por favor complete todos los campos y seleccione los prefijos'),
                   ));
                   return;
                 }
@@ -135,6 +205,15 @@ class _EquilateroState extends State<Equilatero> {
                 final distancia = double.parse(distanciaController.text);
                 final cargaTrabajo =
                     int.tryParse(cargaTrabajoController.text) ?? 0;
+
+                //Convertir la carga usando el prefijo selecionado...
+
+                double carga1Convertida =
+                    carga1 * valoresPrefijos[prefijoseleccionadoCarga1]!;
+                double carga2Convertida =
+                    carga2 * valoresPrefijos[prefijoseleccionadoCarga2]!;
+                double carga3Convertida =
+                    carga3 * valoresPrefijos[prefijoseleccionadoCarga3]!;
 
                 if (distancia <= 0) {
                   showDialog(
@@ -191,6 +270,9 @@ class _EquilateroState extends State<Equilatero> {
                       modelocarga3: modelocarga3,
                       combinacion3d: combinacion3d,
                       resultante3d: resultante3d,
+                      carga1convertida: carga1Convertida,
+                      carga2convertida: carga2Convertida,
+                      carga3convertida: carga3Convertida,
                     ),
                   ),
                 );
