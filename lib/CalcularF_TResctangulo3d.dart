@@ -20,6 +20,9 @@ class CalFuerzasRectangulo extends StatefulWidget {
   final String combinacion3d;
   final String resultante3d;
   final double angulo;
+  final double carga1convertida;
+  final double carga2convertida;
+  final double carga3convertida;
 
   const CalFuerzasRectangulo({
     Key? key,
@@ -36,6 +39,9 @@ class CalFuerzasRectangulo extends StatefulWidget {
     required this.modelocarga2,
     required this.modelocarga3,
     required this.resultante3d,
+    required this.carga1convertida,
+    required this.carga2convertida,
+    required this.carga3convertida,
   }) : super(key: key);
 
   @override
@@ -77,10 +83,10 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
   }
 
   void actualizarMensajes() {
-    double fuerza12 =
-        calcularFuerza(widget.carga1, widget.carga2, widget.distancia12);
-    double fuerza13 =
-        calcularFuerza(widget.carga1, widget.carga3, widget.distancia13);
+    double fuerza12 = calcularFuerza(
+        widget.carga1convertida, widget.carga2convertida, widget.distancia12);
+    double fuerza13 = calcularFuerza(
+        widget.carga1convertida, widget.carga3convertida, widget.distancia13);
 
     double f1componenteX = componentesX(fuerza12 * signoX1, widget.angulo);
     double f1componenteY = componentesY(fuerza12 * signoY1, widget.angulo);
@@ -105,10 +111,10 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     mensajeFresultanteC1 = "Fuerza resultante: $fuerzaresultante N";
     ////////////////////////////////////////////
 
-    double fuerza21 =
-        calcularFuerza(widget.carga1, widget.carga2, widget.distancia12);
-    double fuerza23 =
-        calcularFuerza(widget.carga2, widget.carga3, widget.distancia23);
+    double fuerza21 = calcularFuerza(
+        widget.carga1convertida, widget.carga2convertida, widget.distancia12);
+    double fuerza23 = calcularFuerza(
+        widget.carga2convertida, widget.carga3convertida, widget.distancia23);
 
     double fuerza21signo = fuerza21 * signo1;
     double fuerza23signo = fuerza23 * signo2;
@@ -124,10 +130,10 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
 
     /////////////////////////////////////////////
 
-    double fuerza31 =
-        calcularFuerza(widget.carga1, widget.carga3, widget.distancia13);
-    double fuerza32 =
-        calcularFuerza(widget.carga2, widget.carga3, widget.distancia23);
+    double fuerza31 = calcularFuerza(
+        widget.carga1convertida, widget.carga3convertida, widget.distancia13);
+    double fuerza32 = calcularFuerza(
+        widget.carga2convertida, widget.carga3convertida, widget.distancia23);
 
     double f1componenteXC3 = componentesX(fuerza31 * signoX1, widget.angulo);
     double f1componenteYC3 = componentesY(fuerza31 * signoY1, widget.angulo);

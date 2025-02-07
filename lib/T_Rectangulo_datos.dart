@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, use_super_parameters, avoid_print
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:graficos_dinamicos/CalcularF_TResctangulo3d.dart';
 import 'package:graficos_dinamicos/tabla_prefijos.dart';
@@ -26,6 +28,21 @@ class _RectanguloState extends State<Rectangulo> {
   late String combinacion3d = 'assets/Caso(+,+,+).glb';
   late String resultante3d =
       'assets/Resultante_Triangulo_EyR/Caso_Resul(+,+,+)_TR_respecto_C1.glb';
+
+  //Creación y Uso de los prefijos...
+
+  static const prefijos = <String>['µC', 'nC', 'mC', 'pC'];
+  String? prefijoseleccionadoCarga1;
+  String? prefijoseleccionadoCarga2;
+  String? prefijoseleccionadoCarga3;
+
+// Dando el valor al nombre del prefijo...
+  static final Map<String, double> valoresPrefijos = {
+    'µC': pow(10, -6).toDouble(),
+    'nC': pow(10, -9).toDouble(),
+    'mC': pow(10, -3).toDouble(),
+    'pC': pow(10, -12).toDouble(),
+  };
   @override
   void dispose() {
     // Dispose los controladores al finalizar
@@ -75,6 +92,24 @@ class _RectanguloState extends State<Rectangulo> {
                 "Digite los valores de las cargas, Coulombs (C):",
                 style: TextStyle(fontSize: 18),
               ),
+              const SizedBox(height: 20),
+//Creamos el DropdownButton para permitir visializar las opcines de prefijos que tenemos disponibles...
+
+              DropdownButton<String>(
+                hint: const Text("Seleccione un prefijo (q1)"),
+                value: prefijoseleccionadoCarga1,
+                items: prefijos.map((String prefijo) {
+                  return DropdownMenuItem<String>(
+                    value: prefijo,
+                    child: Text(prefijo),
+                  );
+                }).toList(),
+                onChanged: (String? nuevoValor) {
+                  setState(() {
+                    prefijoseleccionadoCarga1 = nuevoValor;
+                  });
+                },
+              ),
               const SizedBox(height: 5),
               TextField(
                 controller: carga1Controller,
@@ -85,6 +120,22 @@ class _RectanguloState extends State<Rectangulo> {
                 keyboardType: const TextInputType.numberWithOptions(
                     signed: true, decimal: true),
               ),
+              const SizedBox(height: 20),
+              DropdownButton<String>(
+                hint: const Text("Seleccione un prefijo (q2)"),
+                value: prefijoseleccionadoCarga2,
+                items: prefijos.map((String prefijo) {
+                  return DropdownMenuItem<String>(
+                    value: prefijo,
+                    child: Text(prefijo),
+                  );
+                }).toList(),
+                onChanged: (String? nuevoValor) {
+                  setState(() {
+                    prefijoseleccionadoCarga2 = nuevoValor;
+                  });
+                },
+              ),
               const SizedBox(height: 10),
               TextField(
                 controller: carga2Controller,
@@ -94,6 +145,22 @@ class _RectanguloState extends State<Rectangulo> {
                 ),
                 keyboardType: const TextInputType.numberWithOptions(
                     signed: true, decimal: true),
+              ),
+              const SizedBox(height: 20),
+              DropdownButton<String>(
+                hint: const Text("Seleccione un prefijo (q3)"),
+                value: prefijoseleccionadoCarga3,
+                items: prefijos.map((String prefijo) {
+                  return DropdownMenuItem<String>(
+                    value: prefijo,
+                    child: Text(prefijo),
+                  );
+                }).toList(),
+                onChanged: (String? nuevoValor) {
+                  setState(() {
+                    prefijoseleccionadoCarga3 = nuevoValor;
+                  });
+                },
               ),
               const SizedBox(height: 10),
               TextField(
@@ -209,6 +276,7 @@ class _RectanguloState extends State<Rectangulo> {
                     );
                     return;
                   }
+
                   if (carga1 == 0 || carga2 == 0 || carga3 == 0) {
                     showDialog(
                       context: context,
@@ -228,6 +296,23 @@ class _RectanguloState extends State<Rectangulo> {
                     );
                     return;
                   }
+                  //Los prefijos deben ser seleccionados, no deben ser null..
+                  if (prefijoseleccionadoCarga1 == null ||
+                      prefijoseleccionadoCarga2 == null ||
+                      prefijoseleccionadoCarga3 == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                          'Por favor complete todos los campos y seleccione los prefijos'),
+                    ));
+                  }
+                  //Convertir la carga usando el prefijo selecionado...
+
+                  double carga1Convertida =
+                      carga1 * valoresPrefijos[prefijoseleccionadoCarga1]!;
+                  double carga2Convertida =
+                      carga2 * valoresPrefijos[prefijoseleccionadoCarga2]!;
+                  double carga3Convertida =
+                      carga3 * valoresPrefijos[prefijoseleccionadoCarga3]!;
                   modelo3d(carga1, carga2, carga3, cargaTrabajo);
 
                   // Navegar a la pantalla de cálculo
@@ -248,6 +333,9 @@ class _RectanguloState extends State<Rectangulo> {
                         modelocarga2: modelocarga2,
                         modelocarga3: modelocarga3,
                         resultante3d: resultante3d,
+                        carga1convertida: carga1Convertida,
+                        carga2convertida: carga2Convertida,
+                        carga3convertida: carga3Convertida,
                       ),
                     ),
                   );
