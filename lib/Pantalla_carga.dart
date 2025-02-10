@@ -13,32 +13,20 @@ class Pantalla_carga extends StatefulWidget {
 }
 
 class _Pantalla_cargaState extends State<Pantalla_carga> {
-  double _valorProgreso = 0.0;
-  final int _totalsegundos = 4;
-  late Timer _timer;
-
   @override
   void initState() {
     super.initState();
-    EmpezarTiempo();
-  }
-
-  void EmpezarTiempo() {
-    const unSegundo = Duration(seconds: 1);
-    _timer = Timer.periodic(unSegundo, (timer) {
-      setState(() {
-        if (_valorProgreso >= 1.0) {
-          timer.cancel();
-        } else {
-          _valorProgreso += 1 / _totalsegundos;
-        }
-      });
+    // Espera 5 segundos antes de navegar a la pantalla principal
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const Principal()),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    var mensaje = _valorProgreso >= 1.0 ? "Entrar" : "Cargando";
     return Scaffold(
       body: Center(
         child: Column(
@@ -50,27 +38,6 @@ class _Pantalla_cargaState extends State<Pantalla_carga> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Image.asset("assets/Logo_U.png"),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Principal()));
-                },
-                child: Text(mensaje)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: LinearProgressIndicator(
-                  value: _valorProgreso,
-                  backgroundColor: Colors.white.withOpacity(0.2),
-                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-                  minHeight: 10,
-                ),
               ),
             ),
           ],
