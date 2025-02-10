@@ -24,7 +24,7 @@ class _InformacionState extends State<Informacion> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Como Funciona',
+            'Información',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -104,7 +104,7 @@ class _InformacionState extends State<Informacion> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'GRAFICA',
+                  'GRAFICA MODELO 3D',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -167,16 +167,16 @@ class _InformacionState extends State<Informacion> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                                '1. El grafico indica la posición de cada carga.'),
+                                '1. El modelo 3d indica la posición de cada carga.'),
                             SizedBox(height: 10),
                             Text(
                                 '2. La flecha bajo la carga es el vector, el cual nos indica la carga que se esta trabajando.'),
                             SizedBox(height: 10),
                             Text(
-                                '3. El grafico nos brinda una animación sobre las fuerzas ejercidas por las cargas.'),
+                                '3. El modelo 3d nos brinda una animación sobre las fuerzas ejercidas por las cargas.'),
                             SizedBox(height: 10),
                             Text(
-                                '4. El boton play nos permite reprodudir las animación.'),
+                                '4. El boton play nos permite reproducir la animación.'),
                           ],
                         ),
                       ),
@@ -207,7 +207,7 @@ class _InformacionState extends State<Informacion> {
                         ),
                         const SizedBox(height: 10),
                         const Text(
-                            'Siempre teniendo encuenta que las cargas que se encuentra acompañadas del vector estan en el punto de origen del plano'),
+                            'Siempre teniendo encuenta que las cargas que se encuentra acompañadas del vector, estan en el punto de origen del plano'),
                         const SizedBox(height: 10),
                         const ElevatedButton(
                           onPressed: null,
