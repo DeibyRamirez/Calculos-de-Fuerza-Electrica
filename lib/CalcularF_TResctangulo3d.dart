@@ -100,8 +100,14 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     mensajeComponentesC1 =
         "Componentes de la Fuerza (1,3): \nX = $f2componenteX \nY = $f2componenteY";
 
+    // Esto nos sirve para saber caundo es posible que las fuerzas deban ser Negativas... en algunos casos
+    if (widget.carga1convertida > 0 && widget.carga2convertida < 0 ||
+        widget.carga1convertida < 0 && widget.carga2convertida > 0) {
+      fuerza12 = fuerza12 * -1;
+      
+    }
     double fuerzaresultanteX = 0 + f2componenteX;
-    double fuerzaresultanteY = -1 * fuerza12 + f2componenteY;
+    double fuerzaresultanteY =  fuerza12 + f2componenteY;
 
     mensajesumasC1 =
         "La suma de la fuerzas en X es: $fuerzaresultanteX\n La suma de la fuerzas en Y es: $fuerzaresultanteY ";
@@ -143,6 +149,13 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
 
     mensajeComponentesC3 =
         "Componentes de la Fuerza (3,1): \nX = $f1componenteXC3 \nY = $f1componenteYC3 ";
+
+    // Esto nos sirve para saber caundo es posible que las fuerzas deban ser Negativas... en algunos casos
+    if (widget.carga2convertida > 0 && widget.carga3convertida < 0 ||
+        widget.carga2convertida < 0 && widget.carga3convertida > 0) {
+      fuerza32 = fuerza32 * -1;
+      
+    }
 
     double fuerzaresultanteXC3 = f1componenteXC3 + fuerza32;
     double fuerzaresultanteYC3 = f1componenteYC3 +

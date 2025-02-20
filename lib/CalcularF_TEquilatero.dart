@@ -123,7 +123,13 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     mensajeComponentesC2 =
         "Componentes de la Fuerza (2,1):\n\n X = $f1componenteXC2,\n Y = $f1componenteYC2";
 
-    double fuerzaresultanteXC2 = f1componenteXC2 - fuerza23;
+    //Realice este cambio para que funcione de mandera correcta al momento de escoger el signo de la fuerza23
+    if (widget.carga2convertida > 0 && widget.carga3convertida > 0 ||
+        widget.carga2convertida < 0 && widget.carga3convertida < 0) {
+      fuerza23 = fuerza23 * -1;
+      
+    }
+    double fuerzaresultanteXC2 = f1componenteXC2 + fuerza23;
     double fuerzaresultanteYC2 = f1componenteYC2 + 0; //Puede ser por (-1)
     mensajesumasC2 =
         "La suma de la fuerzas en X es: $fuerzaresultanteXC2(i) \n\nLa suma de la fuerzas en Y es: $fuerzaresultanteYC2(j) ";
@@ -151,7 +157,13 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
 
     mensajeComponentesC3 =
         "Componentes de la Fuerza (3,1): \n\nX = $f1componenteXC3,\nY = $f1componenteYC3 ";
-
+        
+    //Realice este cambio para que funcione de mandera correcta al momento de escoger el signo de la fuerza32
+    if (widget.carga2convertida > 0 && widget.carga3convertida < 0 ||
+        widget.carga2convertida < 0 && widget.carga3convertida > 0) {
+      fuerza32 = fuerza32 * -1;
+      
+    }
     double fuerzaresultanteXC3 = f1componenteXC3 + fuerza32;
     double fuerzaresultanteYC3 = f1componenteYC3 +
         0; //Puede ser por (-1)  falta el caso 3 y el trianfulo y el lineal, (TODO)...

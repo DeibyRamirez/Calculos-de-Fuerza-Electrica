@@ -71,7 +71,7 @@ class _EquilateroState extends State<Equilatero> {
             Image.asset('assets/Equilatero.jpg'),
             const SizedBox(height: 20),
             const Text(
-              "Digite los valores de las cargas, Coulombs (C):",
+              "Digite los valores de las cargas con signo, Coulombs (C):",
               style: TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 20),
