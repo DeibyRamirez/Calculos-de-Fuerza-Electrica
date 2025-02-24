@@ -22,6 +22,8 @@ class CalcularFLineal3d extends StatefulWidget {
 
 //Ahora para los calculos usaremos las cargas convertidas y para los modelos 3d las cargas normales...
 
+
+//Falta entender que paso con los botones porque ahy mas botones y menos codigo
   final double carga1convertida;
   final double carga2convertida;
   final double carga3convertida;
@@ -100,7 +102,9 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
   late Map<String, Map<String, dynamic>> mapaCaso1;
   late Map<String, Map<String, dynamic>> mapaCaso2;
   late Map<String, Map<String, dynamic>> mapaCaso3;
+  
   late Map<String, Map<String, dynamic>> mapaseleccionado;
+  
 
   @override
   void initState() {
@@ -119,15 +123,15 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza13signo = fuerza13 * signo2;
 
     mensajeResultadoC1 =
-        " Fuerza entre cargas 1 y 2:\n\n $fuerza12 N\n\n Fuerza entre cargas 1 y 3:\n\n $fuerza13 N";
+        " Fuerza entre cargas 1 y 2:\n $fuerza12 N\n\n Fuerza entre cargas 1 y 3:\n $fuerza13 N";
 
     mensajesignoC1 =
-        "Fuerza(1,2) = $fuerza12signo \n\nFuerza(1,3) = $fuerza13signo ";
-    mensajesumasC1 = "($fuerza12signo) + ($fuerza13signo)";
+        " Fuerza(1,2): $fuerza12signo N \n\nFuerza(1,3): $fuerza13signo N ";
+    mensajesumasC1 = "($fuerza12signo N) + ($fuerza13signo N)";
 
     late double fuerzaresultanteC1 = Fresultante(fuerza12signo, fuerza13signo);
 
-    mensajeFresultanteC1 = "\nFuerza resultante: $fuerzaresultanteC1 N";
+    mensajeFresultanteC1 = "\n$fuerzaresultanteC1 N";
     ////////////////////////////////////////////
 
     double fuerza21 = calcularFuerza(
@@ -139,16 +143,16 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza23signo = fuerza23 * signo2;
 
     mensajeResultadoC2 =
-        " Fuerza entre cargas 2 y 1:\n\n $fuerza21 N\n\n Fuerza entre cargas 2 y 3:\n\n $fuerza23 N";
+        " Fuerza entre cargas 2 y 1: $fuerza21 N\n\n Fuerza entre cargas 2 y 3: $fuerza23 N";
 
     mensajesignoC2 =
-        "Fuerza(2,1) = $fuerza21signo\n\nFuerza(2,3) = $fuerza23signo ";
+        " Fuerza(2,1) = $fuerza21signo\n\nFuerza(2,3) = $fuerza23signo ";
 
-    mensajesumasC2 = "($fuerza21signo) + ($fuerza23signo)";
+    mensajesumasC2 = "($fuerza21signo N) + ($fuerza23signo N)";
 
     double fuerzaresultanteC2 = Fresultante(fuerza21signo, fuerza23signo);
 
-    mensajeFresultanteC2 = "Fuerza resultante: $fuerzaresultanteC2";
+    mensajeFresultanteC2 = "$fuerzaresultanteC2 N";
 
     /////////////////////////////////////////////
 
@@ -161,15 +165,15 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza32signo = fuerza32 * signo2;
 
     mensajeResultadoC3 =
-        " Fuerza entre cargas 3 y 1:\n\n $fuerza31 N\n\n Fuerza entre cargas 3 y 2:\n\n $fuerza32 N";
+        " Fuerza entre cargas 3 y 1: $fuerza31 N\n\n Fuerza entre cargas 3 y 2: $fuerza32 N";
 
     mensajesignoC3 =
-        "Fuerza(3,1):  = $fuerza31signo\n\nFuerza(3,2): = $fuerza32signo ";
-    mensajesumasC3 = "($fuerza31signo) + ($fuerza32signo)";
+        " Fuerza(3,1):  = $fuerza31signo N\n\nFuerza(3,2): = $fuerza32signo N";
+    mensajesumasC3 = "($fuerza31signo N) + ($fuerza32signo N)";
 
     double fuerzaresultanteC3 = Fresultante(fuerza32signo, fuerza31signo);
 
-    mensajeFresultanteC3 = "Fuerza resultante: $fuerzaresultanteC3";
+    mensajeFresultanteC3 = "$fuerzaresultanteC3 N";
 
     modelo3d(widget.carga1, widget.carga2, widget.carga3, widget.cargaTrabajo,
         fuerzaresultanteC1, fuerzaresultanteC2, fuerzaresultanteC3);
@@ -234,6 +238,17 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
       mapaseleccionado = mapaCaso2;
     } else if (widget.cargaTrabajo == 3) {
       mapaseleccionado = mapaCaso3;
+    } else if (widget.cargaTrabajo != 1 ||widget.cargaTrabajo != 2 || widget.cargaTrabajo != 3)
+    {
+      return Scaffold(
+          appBar: AppBar(
+            title: const Text("Fuerza Eléctrica"),
+            centerTitle: true,
+          ),
+          body: const Center(
+            child: Text('Carga de trabajo no válida',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          ),
+        );
     }
 
     return Scaffold(
@@ -368,6 +383,7 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
+                                
                                 SizedBox(
                                   height: 160,
                                   width: 100,
@@ -402,38 +418,22 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                           ),
                         ],
                       ),
-                      Card(
-                        elevation: 5,
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Fuerzas",
-                                style: TextStyle(
-                                    fontSize: 19, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                                width: 400,
-                              ),
-                              Text(
-                                mapaseleccionado['mensajes']?['resultado'],
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ]),
-                      ),
+                      const SizedBox(
+                                  height: 20
+                                ),
+                      
                       Card(
                         elevation: 5,
                         child: Column(
                           children: [
                             const Text(
-                              "Sentido de las Fuerzas...",
+                              "Sentido de las Fuerzas",
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
-                              height: 280,
+                              height: 300,
+                              width: 400,
                               child: Flutter3DViewer(
                                 controller: _controller,
                                 src: widget.combinacion3d,
@@ -494,13 +494,29 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                             child: Column(children: [
                               const Text("Digite el sentido de las Fuerzas",
                                   style: TextStyle(
-                                      fontSize: 19,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.bold)),
                               const SizedBox(height: 20),
                               Text(mapaseleccionado['mensajes']?['sentidoF1']),
                               const SizedBox(height: 20),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        signo1 = -1;
+                                      });
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: signo1 == -1
+                                          ? Colors.blue
+                                          : Colors.white,
+                                          
+                                    ),
+                                    child: const Text(" Izquierda ( - )",style: TextStyle(color: Colors.black),),
+                                  ),
                                   const SizedBox(width: 20),
                                   ElevatedButton(
                                     onPressed: () {
@@ -513,29 +529,33 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                           ? Colors.blue
                                           : Colors.white,
                                     ),
-                                    child: const Text(" Derecha ( + )"),
+                                    child: const Text(" Derecha ( + )",style: TextStyle(color: Colors.black),)
                                   ),
-                                  const SizedBox(width: 20),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        signo1 = -1;
-                                      });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: signo1 == -1
-                                          ? Colors.blue
-                                          : Colors.white,
-                                    ),
-                                    child: const Text(" Izquierda ( - )"),
-                                  )
+                                  
+                                  
                                 ],
                               ),
                               const SizedBox(height: 20),
+                              
                               Text(mapaseleccionado['mensajes']?['sentidoF2']),
                               const SizedBox(height: 20),
                               Row(
-                                children: [
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [ 
+                                  
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        signo2 = -1;
+                                      });
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: signo2 == -1
+                                          ? Colors.blue
+                                          : Colors.white,
+                                    ),
+                                    child: const Text(" Izquierda ( - )",style: TextStyle(color: Colors.black)),
+                                  ),
                                   const SizedBox(width: 20),
                                   ElevatedButton(
                                     onPressed: () {
@@ -548,22 +568,8 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                           ? Colors.blue
                                           : Colors.white,
                                     ),
-                                    child: const Text(" Derecha ( + )"),
+                                    child: const Text(" Derecha ( + )",style: TextStyle(color: Colors.black)),
                                   ),
-                                  const SizedBox(width: 20),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        signo2 = -1;
-                                      });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: signo2 == -1
-                                          ? Colors.blue
-                                          : Colors.white,
-                                    ),
-                                    child: const Text(" Izquierda ( - )"),
-                                  )
                                 ],
                               ),
                               const SizedBox(height: 10),
@@ -582,7 +588,36 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                 const WidgetStatePropertyAll(Colors.blue)),
                         child: const Text(
                           "Ingresar los Signos",
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        
+                      ),
+                      const SizedBox(height: 10),
+                      Card(
+                        elevation: 5,
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            width: 400,
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Magnitud de las Fuerzas",
+                                    style: TextStyle(
+                                        fontSize: 19, fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                    width: 400,
+                                  ),
+                                  Text(
+                                    mapaseleccionado['mensajes']?['resultado'],
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ]),
+                          ),
                         ),
                       ),
                       Card(
@@ -590,62 +625,69 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: Padding(
                             padding: const EdgeInsets.all(8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Fuerzas con Dirección",
-                                  style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                  width: 400,
-                                ),
-                                Text(
-                                  mapaseleccionado['mensajes']?['signos'],
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                              ],
+                            child: SizedBox(
+                              width: 400,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Fuerzas con Dirección",
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                    width: 400,
+                                  ),
+                                  Text(
+                                    mapaseleccionado['mensajes']?['signos'],
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
                             ),
                           )),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Card(
                           elevation: 5,
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: Padding(
                             padding: const EdgeInsets.all(8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Sumatoria de Fuerzas",
-                                  style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  mapaseleccionado['mensajes']?['sumas'],
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                              ],
+                            child: SizedBox(
+                              width: 400,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Sumatoria de Fuerzas",
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    mapaseleccionado['mensajes']?['sumas'],
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
                             ),
                           )),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Card(
                         elevation: 5,
                         margin: const EdgeInsets.symmetric(vertical: 10),
                         child: Padding(
                           padding: const EdgeInsets.all(8),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               const Text(
                                 "Fuerza Resultante",
                                 style: TextStyle(
-                                    fontSize: 19, fontWeight: FontWeight.bold),
+                                    fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -654,29 +696,32 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                               Text(
                                 mapaseleccionado['resultados']
                                     ?['fuerzaResultante'],
-                                style: const TextStyle(fontSize: 16),
+                                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                               ),
                               if (mostrarResultante)
                                 SizedBox(
-                                  height: 280,
-                                  child: Flutter3DViewer(
-                                    controller: _controllerResult,
-                                    src: resultante3d,
-                                    progressBarColor: Colors.blue,
-                                    activeGestureInterceptor: true,
-                                    enableTouch: true,
-                                    onProgress: (double progressValue) {
-                                      debugPrint(
-                                          'Carga del Modelo en Proceso : $progressValue');
-                                    },
-                                    onLoad: (String modelAddress) {
-                                      debugPrint(
-                                          'Modelo Cargando : $modelAddress');
-                                    },
-                                    onError: (String error) {
-                                      debugPrint(
-                                          'Modelo Fallo al Cargar : $error');
-                                    },
+                                  height: 300,
+                                  
+                                  child: Center(
+                                    child: Flutter3DViewer(
+                                      controller: _controllerResult,
+                                      src: resultante3d,
+                                      progressBarColor: Colors.blue,
+                                      activeGestureInterceptor: true,
+                                      enableTouch: true,
+                                      onProgress: (double progressValue) {
+                                        debugPrint(
+                                            'Carga del Modelo en Proceso : $progressValue');
+                                      },
+                                      onLoad: (String modelAddress) {
+                                        debugPrint(
+                                            'Modelo Cargando : $modelAddress');
+                                      },
+                                      onError: (String error) {
+                                        debugPrint(
+                                            'Modelo Fallo al Cargar : $error');
+                                      },
+                                    ),
                                   ),
                                 ),
                               if (mostrarResultante)

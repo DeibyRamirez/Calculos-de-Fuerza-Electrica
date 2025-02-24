@@ -216,7 +216,7 @@ class _InformacionState extends State<Informacion> {
                                   WidgetStatePropertyAll(Colors.blue)),
                           child: Text(
                             "Ingresar los Sentidos de las Fuerzas",
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                         const SizedBox(height: 10),

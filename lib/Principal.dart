@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_super_parameters
 
 import 'package:flutter/material.dart';
+import 'package:graficos_dinamicos/Creadores.dart';
 import 'package:graficos_dinamicos/Lineal_datos.dart';
 import 'package:graficos_dinamicos/T_Equilatero_datos.dart';
 import 'package:graficos_dinamicos/T_Rectangulo_datos.dart';
@@ -36,6 +37,13 @@ class _PrincipalState extends State<Principal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+           
+           IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const Creadores()));
+            
+           }, icon: const Icon(Icons.computer))
+        ],
         title: const Text(
           "Fuerzas Eléctricas",
           style: TextStyle(color: Colors.white),
@@ -50,7 +58,7 @@ class _PrincipalState extends State<Principal> {
               const SizedBox(height: 30),
               const Text(
                 "Selecciona el Diagrama de tu ejercicio: ",
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(fontSize: 19),
               ),
               const SizedBox(height: 10),
               Column(
