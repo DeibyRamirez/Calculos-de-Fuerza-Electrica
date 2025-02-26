@@ -642,7 +642,7 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                   ),
                                   Text(
                                     mapaseleccionado['mensajes']?['signos'],
-                                    textAlign: TextAlign.center,
+                                    
                                     style: const TextStyle(fontSize: 16),
                                   ),
                                 ],

@@ -58,7 +58,7 @@ class _EquilateroState extends State<Equilatero> {
         ],
         backgroundColor: Colors.blue,
         title: const Text(
-          "Trí Equilatero",
+          "Trí Equilátero",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,

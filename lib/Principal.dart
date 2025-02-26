@@ -23,12 +23,12 @@ class _PrincipalState extends State<Principal> {
       'widget': const Lineal_datos(),
     },
     {
-      'nombre': 'Triangulo Rectangulo',
+      'nombre': 'Triángulo Rectángulo',
       'imagen': 'assets/Triangulo_Rectangulo.jpg',
       'widget': const Rectangulo(),
     },
     {
-      'nombre': 'Triangulo Equilatero',
+      'nombre': 'Triángulo Equilátero',
       'imagen': 'assets/Equilatero.jpg',
       'widget': const Equilatero(),
     },
@@ -59,7 +59,7 @@ class _PrincipalState extends State<Principal> {
             children: [
               const SizedBox(height: 30),
               const Text(
-                "Selecciona el Diagrama de tu ejercicio: ",
+                "Selecciona el Diagrama de tu ejercicio",
                 style: TextStyle(fontSize: 19),
               ),
               const SizedBox(height: 10),

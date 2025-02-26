@@ -47,7 +47,7 @@ class _InformacionState extends State<Informacion> {
                     Card(
                         child: Column(
                       children: [
-                        const Text(' POSITIVAS '),
+                        const Text(' POSITIVAS ', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                         SizedBox(
                           height: 160,
                           width: 100,
@@ -75,7 +75,7 @@ class _InformacionState extends State<Informacion> {
                     Card(
                       child: Column(
                         children: [
-                          const Text(' NEGATIVAS '),
+                          const Text(' NEGATIVAS ', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                           SizedBox(
                             height: 160,
                             width: 100,
@@ -104,7 +104,7 @@ class _InformacionState extends State<Informacion> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'GRAFICA MODELO 3D',
+                  'GRÁFICA MODELO 3D',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -185,7 +185,7 @@ class _InformacionState extends State<Informacion> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'MOSTRAR LOS CALCULOS',
+                  'MOSTRAR LOS CÁLCULOS',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
@@ -207,7 +207,7 @@ class _InformacionState extends State<Informacion> {
                         ),
                         const SizedBox(height: 10),
                         const Text(
-                            'Siempre teniendo encuenta que las cargas que se encuentra acompañadas del vector, estan en el punto de origen del plano'),
+                            'Siempre teniendo en cuenta que las cargas que se encuentra acompañadas del vector, estan en el punto de origen del plano.'),
                         const SizedBox(height: 10),
                         const ElevatedButton(
                           onPressed: null,

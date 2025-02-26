@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -401,7 +403,7 @@ class ProgressPainter extends CustomPainter {
     canvas.drawArc(progressRect, -pi / 2, 2 * pi * progress, false, glowPaint);
 
     // Puntos de progreso
-    final totalPoints = 20;
+    const totalPoints = 20;
     for (int i = 0; i < totalPoints; i++) {
       final angle = 2 * pi * (i / totalPoints) - (pi / 2);
       final pointProgress = (progress * totalPoints).floor();
