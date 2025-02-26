@@ -33,17 +33,18 @@ class _PrincipalState extends State<Principal> {
       'widget': const Equilatero(),
     },
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-           
-           IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const Creadores()));
-            
-           }, icon: const Icon(Icons.computer))
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Creadores()));
+              },
+              icon: const Icon(Icons.computer))
         ],
         title: const Text(
           "Fuerzas Eléctricas",
@@ -98,41 +99,44 @@ class EjemploCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Column(
-        children: [
-          const SizedBox(height: 10),
-          Text(
-            nombre,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 10),
+    return SizedBox(
+      width: 500,
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Text(
+              nombre,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset(imagen),
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.asset(imagen),
               ),
             ),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => widgetDestino),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => widgetDestino),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+              ),
+              child: const Text(
+                'Ingresar',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
-            child: const Text(
-              'Ingresar',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          const SizedBox(height: 10),
-        ],
+            const SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }
