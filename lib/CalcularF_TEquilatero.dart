@@ -90,7 +90,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     double f2componenteY = componentesY(fuerza13 * signoY2, widget.angulo);
 
     mensajeResultadoC1 =
-        "Fuerza entre cargas 1 y 2: $fuerza12 N\n\nFuerza entre cargas 1 y 3: $fuerza13 N";
+        "Fuerza entre cargas 1 y 2: \n$fuerza12 N\n\nFuerza entre cargas 1 y 3: \n$fuerza13 N";
 
     //Realice este cambio para que funcione de manera correcta al momento de escoger el signo de la fuerza23 y ademas para mostrar los mensajes de fuerzas con signo
     if (widget.carga2convertida > 0 &&
@@ -119,7 +119,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
       fuerza12 = fuerza12 * -1;
     }
     mensajeComponentesC1 =
-        "Fuerza entre cargas 1 y 2:\n $fuerza12 N\n\nFuerza entre cargas 1 y 3:\n $fuerza13 N\n\n Componentes de la Fuerza (1,2):\n X = $f1componenteX\n Y = $f1componenteY\n\nComponentes de la Fuerza (1,3):\n X = $f2componenteX\n Y = $f2componenteY";
+        " Componentes de la Fuerza (1,2):\n X = $f1componenteX\n Y = $f1componenteY\n\nComponentes de la Fuerza (1,3):\n X = $f2componenteX\n Y = $f2componenteY";
 
     double fuerzaresultanteX = f1componenteX + f2componenteX;
     double fuerzaresultanteY = f1componenteY + f2componenteY;
@@ -145,7 +145,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
         widget.angulo); // No tocar los angulos, todo funciona melo
 
     mensajeResultadoC2 =
-        "Fuerza entre cargas 2 y 1: $fuerza21 N\n\nFuerza entre cargas 2 y 3: $fuerza23 N";
+        "Fuerza entre cargas 2 y 1: \n$fuerza21 N\n\nFuerza entre cargas 2 y 3: \n$fuerza23 N";
 
     //Realice este cambio para que funcione de manera correcta al momento de escoger el signo de la fuerza23
     if (widget.carga2convertida > 0 && widget.carga3convertida > 0 ||
@@ -168,7 +168,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
       fuerza21 = fuerza21 * -1;
     }
     mensajeComponentesC2 =
-        "Fuerza entre cargas 2 y 1:\n $fuerza21 N\n\nFuerza entre cargas 2 y 3:\n $fuerza23 N\n\n Componentes de la Fuerza (2,1):\n X = $f1componenteXC2\n Y = $f1componenteYC2";
+        " Componentes de la Fuerza (2,1):\n X = $f1componenteXC2 N\n Y = $f1componenteYC2 N\n\n Componentes de la Fuerza(2,3):\n X = $fuerza23 N\n Y = 0 N ";
 
     double fuerzaresultanteXC2 = f1componenteXC2 + fuerza23;
     double fuerzaresultanteYC2 = f1componenteYC2 + 0;
@@ -195,7 +195,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     double f2componenteYC3 = componentesY(fuerza23 * signoY2, widget.angulo);
 
     mensajeResultadoC3 =
-        "Fuerza entre cargas 3 y 1: $fuerza31 N\n\nFuerza entre cargas 3 y 2: $fuerza32 N";
+        "Fuerza entre cargas 3 y 1: \n$fuerza31 N\n\nFuerza entre cargas 3 y 2: \n$fuerza32 N";
 
     //Realice este cambio para que funcione de manera correcta al momento de escoger el signo de la fuerza32
     if (widget.carga2convertida > 0 && widget.carga3convertida < 0 ||
@@ -211,7 +211,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
       fuerza31 = fuerza31 * -1;
     }
     mensajeComponentesC3 =
-        "Fuerza entre cargas 3 y 1:\n $fuerza31 N\n\nFuerza entre cargas 3 y 2:\n $fuerza32 N \n\nComponentes de la Fuerza (3,1): \n X = $f1componenteXC3\n Y = $f1componenteYC3 ";
+        "Componentes de la Fuerza (3,1): \n X = $f1componenteXC3\n Y = $f1componenteYC3 \n\nComponentes de la Fuerza (3,2):\nX = $fuerza32 N\nY = 0 N";
 
     double fuerzaresultanteXC3 = f1componenteXC3 + fuerza32;
     double fuerzaresultanteYC3 = f1componenteYC3 + 0;
@@ -567,7 +567,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                           "Fuerzas con Dirección y Componentes",
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+                          
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -598,7 +598,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                         const SizedBox(height: 10),
                         Text(
                           mensajesumasC1,
-                          textAlign: TextAlign.center,
+                          
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -616,7 +616,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        "Fuerza Resultante",
+                        "Magnitud de la Fuerza Resultante",
                         style: TextStyle(
                             fontSize: 19, fontWeight: FontWeight.bold),
                       ),
@@ -1058,7 +1058,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                         const SizedBox(height: 10),
                         Text(
                           mensajeResultadoC2,
-                          textAlign: TextAlign.center,
+                          
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -1110,7 +1110,6 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                         const SizedBox(height: 10),
                         Text(
                           mensajesumasC2,
-                          textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -1130,7 +1129,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          "Fuerza Resultante",
+                          "Magnitud de la Fuerza Resultante",
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.bold),
                         ),
@@ -1517,8 +1516,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                         const SizedBox(height: 10),
                         Text(
                           mensajesumasC3,
-                          textAlign: TextAlign
-                              .center, // alinea el texto al centro cuando esta en vertical el mobile
+                          
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -1536,7 +1534,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        "Fuerza Resultante",
+                        "Magnitud de la Fuerza Resultante",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),

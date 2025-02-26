@@ -127,13 +127,13 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
       fuerza12 = fuerza12 * -1;
     }
     mensajeComponentesC1 =
-        " Fuerza entre cargas 1 y 2:\n $fuerza12 N\n\nFuerza entre cargas 1 y 3:\n $fuerza13 N \n\nComponentes de la Fuerza (1,3): \nX = $f2componenteX \nY = $f2componenteY";
+        " Componentes de la Fuerza (1,3): \nX = $f2componenteX N\nY = $f2componenteY N \n\nComponentes de la Fuerza (1,2): \nX = 0 N\nY = $fuerza12 N" ;
 
     double fuerzaresultanteX = 0 + f2componenteX;
     double fuerzaresultanteY = fuerza12 + f2componenteY;
 
     mensajesumasC1 =
-        " La suma de la fuerzas en X es: $fuerzaresultanteX (i)\n\n La suma de la fuerzas en Y es: $fuerzaresultanteY (j)";
+        " La suma de la fuerzas en X es: \n$fuerzaresultanteX (i)\n\n La suma de la fuerzas en Y es: \n$fuerzaresultanteY (j)";
 
     double fuerzaresultante = Fresultante(fuerzaresultanteX, fuerzaresultanteY);
 
@@ -201,7 +201,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     }
 
     mensajeComponentesC3 =
-        " Fuerza entre cargas 3 y 1:\n $fuerza31 N\n\nFuerza entre cargas 3 y 2:\n $fuerza32 N\n\nComponentes de la Fuerza (3,1): \nX = $f1componenteXC3 \nY = $f1componenteYC3 ";
+        "Componentes de la Fuerza (3,1): \nX = $f1componenteXC3 N \nY = $f1componenteYC3 N \n\nComponentes de la Fuerza (3,2): \nX = $fuerza32 N\nY = 0  N";
 
     double fuerzaresultanteXC3 = f1componenteXC3 + fuerza32;
     double fuerzaresultanteYC3 = f1componenteYC3 + 0;
@@ -527,7 +527,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         Text(
                           mensajeResultadoC1,
                           style: const TextStyle(fontSize: 16),
-                          textAlign: TextAlign.center,
+                          
                         ),
                       ],
                     ),
@@ -554,7 +554,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         Text(
                           mensajeComponentesC1,
                           style: const TextStyle(fontSize: 16),
-                          textAlign: TextAlign.center,
+                          
                         ),
                       ],
                     ),
@@ -581,7 +581,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         Text(
                           mensajesumasC1,
                           style: const TextStyle(fontSize: 16),
-                          textAlign: TextAlign.center,
+                          
                         ),
                       ],
                     ),
@@ -600,7 +600,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          "Fuerza Resultante",
+                          "Magnitud de la Fuerza Resultante",
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.bold),
                         ),
@@ -1094,7 +1094,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 const Text(
-                                  "Fuerza Resultante",
+                                  "Magnitud de la Fuerza Resultante",
                                   style: TextStyle(
                                       fontSize: 19,
                                       fontWeight: FontWeight.bold),
@@ -1502,7 +1502,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          "Fuerza Resultante",
+                          "Magnitud de la Fuerza Resultante",
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.bold),
                         ),

@@ -33,6 +33,7 @@ class _PrincipalState extends State<Principal> {
       'widget': const Equilatero(),
     },
   ];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,12 +102,19 @@ class EjemploCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Column(
         children: [
+          const SizedBox(height: 10),
           Text(
             nombre,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
-          Image.asset(imagen),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: Image.asset(imagen),
+              ),
+            ),
           const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {
@@ -123,6 +131,7 @@ class EjemploCard extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
           ),
+          const SizedBox(height: 10),
         ],
       ),
     );

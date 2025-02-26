@@ -689,10 +689,7 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              const SizedBox(
-                                height: 10,
-                                width: 400,
-                              ),
+                              
                               Text(
                                 mapaseleccionado['resultados']
                                     ?['fuerzaResultante'],
