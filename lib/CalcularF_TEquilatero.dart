@@ -1,10 +1,11 @@
-// ignore_for_file: unused_local_variable, file_names, library_private_types_in_public_api, non_constant_identifier_names, use_super_parameters
+// ignore_for_file: use_super_parameters, library_private_types_in_public_api, unused_local_variable
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
 import 'package:graficos_dinamicos/Informacion.dart';
+import 'NotacionCientifica.dart';
 
 //Todos los cambios nesesarios ya fueron creados...
 class CalFuerzasIsosceles extends StatefulWidget {
@@ -70,6 +71,8 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
   late final Flutter3DController _controller;
   late final Flutter3DController _controllerResult;
 
+  final notacionCientifica = Notacioncientifica();
+
   @override
   void initState() {
     super.initState();
@@ -90,7 +93,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     double f2componenteY = componentesY(fuerza13 * signoY2, widget.angulo);
 
     mensajeResultadoC1 =
-        "Fuerza entre cargas 1 y 2: \n$fuerza12 N\n\nFuerza entre cargas 1 y 3: \n$fuerza13 N";
+        "Fuerza entre cargas 1 y 2: \n${notacionCientifica.formatearNotacionCientifica(fuerza12, 2)} N\n\nFuerza entre cargas 1 y 3: \n${notacionCientifica.formatearNotacionCientifica(fuerza13, 2)} N";
 
     //Realice este cambio para que funcione de manera correcta al momento de escoger el signo de la fuerza23 y ademas para mostrar los mensajes de fuerzas con signo
     if (widget.carga2convertida > 0 &&
@@ -119,17 +122,18 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
       fuerza12 = fuerza12 * -1;
     }
     mensajeComponentesC1 =
-        " Componentes de la Fuerza (1,2):\n X = $f1componenteX\n Y = $f1componenteY\n\nComponentes de la Fuerza (1,3):\n X = $f2componenteX\n Y = $f2componenteY";
+        " Componentes de la Fuerza (1,2):\n X = ${notacionCientifica.formatearNotacionCientifica(f1componenteX, 2)}  \n Y = ${notacionCientifica.formatearNotacionCientifica(f1componenteY, 2)}  \n\nComponentes de la Fuerza (1,3):\n X = ${notacionCientifica.formatearNotacionCientifica(f2componenteX, 2)}  \n Y = ${notacionCientifica.formatearNotacionCientifica(f2componenteY, 2)} ";
 
     double fuerzaresultanteX = f1componenteX + f2componenteX;
     double fuerzaresultanteY = f1componenteY + f2componenteY;
 
     mensajesumasC1 =
-        "La suma de la fuerzas en X es:\n $fuerzaresultanteX (i) \n\nLa suma de la fuerzas en Y es:\n $fuerzaresultanteY (j) ";
+        "La suma de la fuerzas en X es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteX, 2)} (i) \n\nLa suma de la fuerzas en Y es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteY, 2)} (j) ";
 
     double fuerzaresultante = Fresultante(fuerzaresultanteX, fuerzaresultanteY);
 
-    mensajeFresultanteC1 = "$fuerzaresultante N";
+    mensajeFresultanteC1 =
+        "${notacionCientifica.formatearNotacionCientifica(fuerzaresultante, 2)} N";
     ////////////////////////////////////////////
 
     double fuerza21 = calcularFuerza(
@@ -145,7 +149,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
         widget.angulo); // No tocar los angulos, todo funciona melo
 
     mensajeResultadoC2 =
-        "Fuerza entre cargas 2 y 1: \n$fuerza21 N\n\nFuerza entre cargas 2 y 3: \n$fuerza23 N";
+        "Fuerza entre cargas 2 y 1: \n${notacionCientifica.formatearNotacionCientifica(fuerza21, 2)} N\n\nFuerza entre cargas 2 y 3: \n${notacionCientifica.formatearNotacionCientifica(fuerza23, 2)} N";
 
     //Realice este cambio para que funcione de manera correcta al momento de escoger el signo de la fuerza23
     if (widget.carga2convertida > 0 && widget.carga3convertida > 0 ||
@@ -168,18 +172,19 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
       fuerza21 = fuerza21 * -1;
     }
     mensajeComponentesC2 =
-        " Componentes de la Fuerza (2,1):\n X = $f1componenteXC2 N\n Y = $f1componenteYC2 N\n\n Componentes de la Fuerza(2,3):\n X = $fuerza23 N\n Y = 0 N ";
+        " Componentes de la Fuerza (2,1):\n X = ${notacionCientifica.formatearNotacionCientifica(f1componenteXC2, 2)} N\n Y = ${notacionCientifica.formatearNotacionCientifica(f1componenteYC2, 2)} N\n\n Componentes de la Fuerza(2,3):\n X = ${notacionCientifica.formatearNotacionCientifica(fuerza23, 2)}  N\n Y = 0 N ";
 
     double fuerzaresultanteXC2 = f1componenteXC2 + fuerza23;
     double fuerzaresultanteYC2 = f1componenteYC2 + 0;
 
     mensajesumasC2 =
-        "La suma de la fuerzas en X es:\n $fuerzaresultanteXC2 (i) \n\nLa suma de la fuerzas en Y es:\n $fuerzaresultanteYC2 (j) ";
+        "La suma de la fuerzas en X es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteXC2, 2)} (i) \n\nLa suma de la fuerzas en Y es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteYC2, 2)} (j) ";
 
     double fuerzaresultanteC2 =
         Fresultante(fuerzaresultanteXC2, fuerzaresultanteYC2);
 
-    mensajeFresultanteC2 = "$fuerzaresultanteC2 N";
+    mensajeFresultanteC2 =
+        "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC2, 2)} N";
 
     /////////////////////////////////////////////
 
@@ -195,7 +200,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     double f2componenteYC3 = componentesY(fuerza23 * signoY2, widget.angulo);
 
     mensajeResultadoC3 =
-        "Fuerza entre cargas 3 y 1: \n$fuerza31 N\n\nFuerza entre cargas 3 y 2: \n$fuerza32 N";
+        "Fuerza entre cargas 3 y 1: \n${notacionCientifica.formatearNotacionCientifica(fuerza31, 2)} N\n\nFuerza entre cargas 3 y 2: \n${notacionCientifica.formatearNotacionCientifica(fuerza32, 2)} N";
 
     //Realice este cambio para que funcione de manera correcta al momento de escoger el signo de la fuerza32
     if (widget.carga2convertida > 0 && widget.carga3convertida < 0 ||
@@ -211,7 +216,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
       fuerza31 = fuerza31 * -1;
     }
     mensajeComponentesC3 =
-        "Componentes de la Fuerza (3,1): \n X = $f1componenteXC3\n Y = $f1componenteYC3 \n\nComponentes de la Fuerza (3,2):\nX = $fuerza32 N\nY = 0 N";
+        "Componentes de la Fuerza (3,1): \n X = ${notacionCientifica.formatearNotacionCientifica(f1componenteXC3, 2)}  \n Y = ${notacionCientifica.formatearNotacionCientifica(f1componenteYC3, 2)}  \n\nComponentes de la Fuerza (3,2):\nX = ${notacionCientifica.formatearNotacionCientifica(fuerza32, 2)} N\nY = 0 N";
 
     double fuerzaresultanteXC3 = f1componenteXC3 + fuerza32;
     double fuerzaresultanteYC3 = f1componenteYC3 + 0;
@@ -220,9 +225,9 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
         Fresultante(fuerzaresultanteXC3, fuerzaresultanteYC3);
 
     mensajesumasC3 =
-        "La suma de la fuerzas en X es:\n $fuerzaresultanteXC3 (i) \n\nLa suma de la fuerzas en Y es:\n $fuerzaresultanteYC3 (j) ";
+        "La suma de la fuerzas en X es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteXC3, 2)} (i) \n\nLa suma de la fuerzas en Y es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteYC3, 2)} (j) ";
 
-    mensajeFresultanteC3 = "$fuerzaresultanteC3 N";
+    mensajeFresultanteC3 = "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC3, 2)} N";
   }
 
   double calcularFuerza(double q1, double q2, double r) {
@@ -567,7 +572,6 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                           "Fuerzas con Dirección y Componentes",
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.bold),
-                          
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -598,7 +602,6 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                         const SizedBox(height: 10),
                         Text(
                           mensajesumasC1,
-                          
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -741,7 +744,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                     child: const Text(
                       "Negativo ( - )",
                       style: TextStyle(
-                          color: Colors.black,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -769,7 +772,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                     child: const Text(
                       "Positivo ( + )",
                       style: TextStyle(
-                          color: Colors.black,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -785,7 +788,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                     child: const Text(
                       "Negativo ( - )",
                       style: TextStyle(
-                          color: Colors.black,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -1058,7 +1061,6 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                         const SizedBox(height: 10),
                         Text(
                           mensajeResultadoC2,
-                          
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -1203,7 +1205,6 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     );
   }
 
- 
 /////////////////////
 
   Widget _buildCase3() {
@@ -1516,7 +1517,6 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                         const SizedBox(height: 10),
                         Text(
                           mensajesumasC3,
-                          
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -1536,7 +1536,7 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                       const Text(
                         "Magnitud de la Fuerza Resultante",
                         style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
+                            fontSize: 19, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -1607,4 +1607,3 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     );
   }
 }
-  

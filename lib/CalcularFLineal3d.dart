@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
 import 'package:graficos_dinamicos/Informacion.dart';
+import 'NotacionCientifica.dart';
 
 class CalcularFLineal3d extends StatefulWidget {
   final int cargaTrabajo;
@@ -21,7 +22,6 @@ class CalcularFLineal3d extends StatefulWidget {
   final String combinacion3d;
 
 //Ahora para los calculos usaremos las cargas convertidas y para los modelos 3d las cargas normales...
-
 
 //Falta entender que paso con los botones porque ahy mas botones y menos codigo
   final double carga1convertida;
@@ -70,6 +70,8 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     ' - Digite el sentido de la Fuerza (3 y 2)'
   ];
 
+  final notacionCientifica = Notacioncientifica();
+
   String mensajeResultadoC1 = '';
   String mensajeResultadoC2 = '';
   String mensajeResultadoC3 = '';
@@ -102,9 +104,8 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
   late Map<String, Map<String, dynamic>> mapaCaso1;
   late Map<String, Map<String, dynamic>> mapaCaso2;
   late Map<String, Map<String, dynamic>> mapaCaso3;
-  
+
   late Map<String, Map<String, dynamic>> mapaseleccionado;
-  
 
   @override
   void initState() {
@@ -123,15 +124,17 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza13signo = fuerza13 * signo2;
 
     mensajeResultadoC1 =
-        " Fuerza entre cargas 1 y 2:\n $fuerza12 N\n\n Fuerza entre cargas 1 y 3:\n $fuerza13 N";
+        " Fuerza entre cargas 1 y 2:\n ${notacionCientifica.formatearNotacionCientifica(fuerza12, 2)} N\n\n Fuerza entre cargas 1 y 3:\n ${notacionCientifica.formatearNotacionCientifica(fuerza13, 2)} N";
 
     mensajesignoC1 =
-        " Fuerza(1,2): $fuerza12signo N \n\nFuerza(1,3): $fuerza13signo N ";
-    mensajesumasC1 = "($fuerza12signo N) + ($fuerza13signo N)";
+        " Fuerza(1,2): ${notacionCientifica.formatearNotacionCientifica(fuerza12signo, 2) } N \n\nFuerza(1,3): ${notacionCientifica.formatearNotacionCientifica(fuerza13signo,2) } N ";
+
+    mensajesumasC1 = "(${notacionCientifica.formatearNotacionCientifica(fuerza12signo, 2) } N) + (${notacionCientifica.formatearNotacionCientifica(fuerza13signo,2) } N)";
 
     late double fuerzaresultanteC1 = Fresultante(fuerza12signo, fuerza13signo);
 
-    mensajeFresultanteC1 = "\n$fuerzaresultanteC1 N";
+    mensajeFresultanteC1 = "\n${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC1,2) } N";
+
     ////////////////////////////////////////////
 
     double fuerza21 = calcularFuerza(
@@ -143,16 +146,16 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza23signo = fuerza23 * signo2;
 
     mensajeResultadoC2 =
-        " Fuerza entre cargas 2 y 1: $fuerza21 N\n\n Fuerza entre cargas 2 y 3: $fuerza23 N";
+        " Fuerza entre cargas 2 y 1: ${notacionCientifica.formatearNotacionCientifica(fuerza21,2) } N\n\n Fuerza entre cargas 2 y 3: ${notacionCientifica.formatearNotacionCientifica(fuerza23,2) } N";
 
     mensajesignoC2 =
-        " Fuerza(2,1) = $fuerza21signo\n\nFuerza(2,3) = $fuerza23signo ";
+        " Fuerza(2,1) = ${notacionCientifica.formatearNotacionCientifica(fuerza21signo,2) } \n\nFuerza(2,3) = ${notacionCientifica.formatearNotacionCientifica(fuerza23signo,2) } ";
 
-    mensajesumasC2 = "($fuerza21signo N) + ($fuerza23signo N)";
+    mensajesumasC2 = "(${notacionCientifica.formatearNotacionCientifica(fuerza21signo,2) } N) + (${notacionCientifica.formatearNotacionCientifica(fuerza23signo,2) } N)";
 
     double fuerzaresultanteC2 = Fresultante(fuerza21signo, fuerza23signo);
 
-    mensajeFresultanteC2 = "$fuerzaresultanteC2 N";
+    mensajeFresultanteC2 = "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC2,2) } N";
 
     /////////////////////////////////////////////
 
@@ -165,15 +168,16 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza32signo = fuerza32 * signo2;
 
     mensajeResultadoC3 =
-        " Fuerza entre cargas 3 y 1: $fuerza31 N\n\n Fuerza entre cargas 3 y 2: $fuerza32 N";
+        " Fuerza entre cargas 3 y 1: ${notacionCientifica.formatearNotacionCientifica(fuerza31,2) } N\n\n Fuerza entre cargas 3 y 2: ${notacionCientifica.formatearNotacionCientifica(fuerza32,2) } N";
 
     mensajesignoC3 =
-        " Fuerza(3,1):  = $fuerza31signo N\n\nFuerza(3,2): = $fuerza32signo N";
-    mensajesumasC3 = "($fuerza31signo N) + ($fuerza32signo N)";
+        " Fuerza(3,1):  = ${notacionCientifica.formatearNotacionCientifica(fuerza31signo,2) } N\n\nFuerza(3,2): = ${notacionCientifica.formatearNotacionCientifica(fuerza32signo,2) } N";
+
+    mensajesumasC3 = "(${notacionCientifica.formatearNotacionCientifica(fuerza31signo,2) } N) + (${notacionCientifica.formatearNotacionCientifica(fuerza32signo,2) } N)";
 
     double fuerzaresultanteC3 = Fresultante(fuerza32signo, fuerza31signo);
 
-    mensajeFresultanteC3 = "$fuerzaresultanteC3 N";
+    mensajeFresultanteC3 = "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC3,2) } N";
 
     modelo3d(widget.carga1, widget.carga2, widget.carga3, widget.cargaTrabajo,
         fuerzaresultanteC1, fuerzaresultanteC2, fuerzaresultanteC3);
@@ -238,17 +242,21 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
       mapaseleccionado = mapaCaso2;
     } else if (widget.cargaTrabajo == 3) {
       mapaseleccionado = mapaCaso3;
-    } else if (widget.cargaTrabajo != 1 ||widget.cargaTrabajo != 2 || widget.cargaTrabajo != 3)
-    {
+    } else if (widget.cargaTrabajo != 1 ||
+        widget.cargaTrabajo != 2 ||
+        widget.cargaTrabajo != 3) {
       return Scaffold(
-          appBar: AppBar(
-            title: const Text("Fuerza Eléctrica"),
-            centerTitle: true,
+        appBar: AppBar(
+          title: const Text("Fuerza Eléctrica"),
+          centerTitle: true,
+        ),
+        body: const Center(
+          child: Text(
+            'Carga de trabajo no válida',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          body: const Center(
-            child: Text('Carga de trabajo no válida',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          ),
-        );
+        ),
+      );
     }
 
     return Scaffold(
@@ -383,7 +391,6 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                
                                 SizedBox(
                                   height: 160,
                                   width: 100,
@@ -418,10 +425,7 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                                  height: 20
-                                ),
-                      
+                      const SizedBox(height: 20),
                       Card(
                         elevation: 5,
                         child: Column(
@@ -502,7 +506,6 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                
                                   ElevatedButton(
                                     onPressed: () {
                                       setState(() {
@@ -513,36 +516,36 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                       backgroundColor: signo1 == -1
                                           ? Colors.blue
                                           : Colors.white,
-                                          
                                     ),
-                                    child: const Text(" Izquierda ( - )",style: TextStyle(color: Colors.black),),
+                                    child: const Text(
+                                      " Izquierda ( - )",
+                                      style: TextStyle(color: Colors.black),
+                                    ),
                                   ),
                                   const SizedBox(width: 20),
                                   ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        signo1 = 1;
-                                      });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: signo1 == 1
-                                          ? Colors.blue
-                                          : Colors.white,
-                                    ),
-                                    child: const Text(" Derecha ( + )",style: TextStyle(color: Colors.black),)
-                                  ),
-                                  
-                                  
+                                      onPressed: () {
+                                        setState(() {
+                                          signo1 = 1;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: signo1 == 1
+                                            ? Colors.blue
+                                            : Colors.white,
+                                      ),
+                                      child: const Text(
+                                        " Derecha ( + )",
+                                        style: TextStyle(color: Colors.black),
+                                      )),
                                 ],
                               ),
                               const SizedBox(height: 20),
-                              
                               Text(mapaseleccionado['mensajes']?['sentidoF2']),
                               const SizedBox(height: 20),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [ 
-                                  
+                                children: [
                                   ElevatedButton(
                                     onPressed: () {
                                       setState(() {
@@ -554,7 +557,8 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                           ? Colors.blue
                                           : Colors.white,
                                     ),
-                                    child: const Text(" Izquierda ( - )",style: TextStyle(color: Colors.black)),
+                                    child: const Text(" Izquierda ( - )",
+                                        style: TextStyle(color: Colors.black)),
                                   ),
                                   const SizedBox(width: 20),
                                   ElevatedButton(
@@ -568,7 +572,8 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                           ? Colors.blue
                                           : Colors.white,
                                     ),
-                                    child: const Text(" Derecha ( + )",style: TextStyle(color: Colors.black)),
+                                    child: const Text(" Derecha ( + )",
+                                        style: TextStyle(color: Colors.black)),
                                   ),
                                 ],
                               ),
@@ -590,7 +595,6 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                           "Ingresar los Signos",
                           style: TextStyle(color: Colors.white),
                         ),
-                        
                       ),
                       const SizedBox(height: 10),
                       Card(
@@ -606,7 +610,8 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                   const Text(
                                     "Magnitud de las Fuerzas",
                                     style: TextStyle(
-                                        fontSize: 19, fontWeight: FontWeight.bold),
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -642,7 +647,6 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                   ),
                                   Text(
                                     mapaseleccionado['mensajes']?['signos'],
-                                    
                                     style: const TextStyle(fontSize: 16),
                                   ),
                                 ],
@@ -689,16 +693,15 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              
                               Text(
                                 mapaseleccionado['resultados']
                                     ?['fuerzaResultante'],
-                                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.bold),
                               ),
                               if (mostrarResultante)
                                 SizedBox(
                                   height: 300,
-                                  
                                   child: Center(
                                     child: Flutter3DViewer(
                                       controller: _controllerResult,

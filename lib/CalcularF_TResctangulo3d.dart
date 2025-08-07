@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
 import 'package:graficos_dinamicos/Informacion.dart';
+import 'NotacionCientifica.dart';
 
 class CalFuerzasRectangulo extends StatefulWidget {
   final int cargaTrabajo;
@@ -75,6 +76,8 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
   late Flutter3DController _controller;
   late Flutter3DController _controllerResult;
 
+  final notacioncientifica = Notacioncientifica();
+
   @override
   void initState() {
     super.initState();
@@ -95,7 +98,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     double f2componenteY = componentesY(fuerza13 * signoY2, widget.angulo);
 
     mensajeResultadoC1 =
-        " Fuerza entre cargas 1 y 2:\n $fuerza12 N\n\nFuerza entre cargas 1 y 3:\n $fuerza13 N";
+        " Fuerza entre cargas 1 y 2:\n ${notacioncientifica.formatearNotacionCientifica(fuerza12, 2)} N\n\nFuerza entre cargas 1 y 3:\n ${notacioncientifica.formatearNotacionCientifica(fuerza13, 2)} N";
 
     // Esto nos sirve para saber caundo es posible que las fuerzas deban ser Negativas... en algunos casos
     if (widget.carga1convertida > 0 &&
@@ -127,17 +130,18 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
       fuerza12 = fuerza12 * -1;
     }
     mensajeComponentesC1 =
-        " Componentes de la Fuerza (1,3): \nX = $f2componenteX N\nY = $f2componenteY N \n\nComponentes de la Fuerza (1,2): \nX = 0 N\nY = $fuerza12 N" ;
+        " Componentes de la Fuerza (1,3): \nX = ${notacioncientifica.formatearNotacionCientifica(f2componenteX, 2)} N\nY = ${notacioncientifica.formatearNotacionCientifica(f2componenteY, 2)} N \n\nComponentes de la Fuerza (1,2): \nX = 0 N\nY = ${notacioncientifica.formatearNotacionCientifica(fuerza12, 2)} N";
 
     double fuerzaresultanteX = 0 + f2componenteX;
     double fuerzaresultanteY = fuerza12 + f2componenteY;
 
     mensajesumasC1 =
-        " La suma de la fuerzas en X es: \n$fuerzaresultanteX (i)\n\n La suma de la fuerzas en Y es: \n$fuerzaresultanteY (j)";
+        " La suma de la fuerzas en X es: \n${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteX, 2)}  (i)\n\n La suma de la fuerzas en Y es: \n${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteY, 2)}   (j)";
 
     double fuerzaresultante = Fresultante(fuerzaresultanteX, fuerzaresultanteY);
 
-    mensajeFresultanteC1 = " $fuerzaresultante N";
+    mensajeFresultanteC1 =
+        " ${notacioncientifica.formatearNotacionCientifica(fuerzaresultante, 2)} N";
     ////////////////////////////////////////////
 
     double fuerza21 = calcularFuerza(
@@ -149,13 +153,14 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     double fuerza23signo = fuerza23 * signo2;
 
     mensajeResultadoC2 =
-        " Fuerza entre cargas 2 y 1:\n $fuerza21signo N\n\n Fuerza entre cargas 2 y 3:\n $fuerza23signo N";
+        " Fuerza entre cargas 2 y 1:\n ${notacioncientifica.formatearNotacionCientifica(fuerza21signo, 2)} N\n\n Fuerza entre cargas 2 y 3:\n ${notacioncientifica.formatearNotacionCientifica(fuerza23signo, 2)} N";
 
-    mensajesumasC2 = "($fuerza21signo N)+($fuerza23signo N)";
+    mensajesumasC2 =
+        "(${notacioncientifica.formatearNotacionCientifica(fuerza21signo, 2)} N)+(${notacioncientifica.formatearNotacionCientifica(fuerza23signo, 2)} N)";
 
     double fuerzaresultanteC2 = Fresultantecaso2(fuerza21signo, fuerza23signo);
 
-    mensajeFresultanteC2 = " $fuerzaresultanteC2 N";
+    mensajeFresultanteC2 = " ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteC2, 2)} N";
 
     /////////////////////////////////////////////
 
@@ -168,7 +173,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     double f1componenteYC3 = componentesY(fuerza31 * signoY1, widget.angulo);
 
     mensajeResultadoC3 =
-        " Fuerza entre cargas 3 y 1:\n $fuerza31 N\n\nFuerza entre cargas 3 y 2:\n $fuerza32 N";
+        " Fuerza entre cargas 3 y 1:\n ${notacioncientifica.formatearNotacionCientifica(fuerza31, 2)} N\n\nFuerza entre cargas 3 y 2:\n ${notacioncientifica.formatearNotacionCientifica(fuerza32, 2)} N";
     // Esto nos sirve para saber cuando es posible que las fuerzas deban ser Negativas... en algunos casos
 
     if (widget.carga1convertida > 0 &&
@@ -201,7 +206,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     }
 
     mensajeComponentesC3 =
-        "Componentes de la Fuerza (3,1): \nX = $f1componenteXC3 N \nY = $f1componenteYC3 N \n\nComponentes de la Fuerza (3,2): \nX = $fuerza32 N\nY = 0  N";
+        "Componentes de la Fuerza (3,1): \nX = ${notacioncientifica.formatearNotacionCientifica(f1componenteXC3, 2)} N \nY = ${notacioncientifica.formatearNotacionCientifica(f1componenteYC3, 2)} N \n\nComponentes de la Fuerza (3,2): \nX = ${notacioncientifica.formatearNotacionCientifica(fuerza32, 2)} N\nY = 0  N";
 
     double fuerzaresultanteXC3 = f1componenteXC3 + fuerza32;
     double fuerzaresultanteYC3 = f1componenteYC3 + 0;
@@ -210,9 +215,9 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
         Fresultante(fuerzaresultanteXC3, fuerzaresultanteYC3);
 
     mensajesumasC3 =
-        " La suma de la fuerzas en X es:\n $fuerzaresultanteXC3 (i)\n La suma de la fuerzas en Y es:\n $fuerzaresultanteYC3 (j)";
+        " La suma de la fuerzas en X es:\n ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteXC3, 2)} (i)\n La suma de la fuerzas en Y es:\n ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteYC3, 2)} (j)";
 
-    mensajeFresultanteC3 = " $fuerzaresultanteC3 N";
+    mensajeFresultanteC3 = " ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteC3, 2)} N";
   }
 
   double calcularFuerza(double q1, double q2, double r) {
@@ -527,7 +532,6 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         Text(
                           mensajeResultadoC1,
                           style: const TextStyle(fontSize: 16),
-                          
                         ),
                       ],
                     ),
@@ -554,7 +558,6 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         Text(
                           mensajeComponentesC1,
                           style: const TextStyle(fontSize: 16),
-                          
                         ),
                       ],
                     ),
@@ -581,7 +584,6 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         Text(
                           mensajesumasC1,
                           style: const TextStyle(fontSize: 16),
-                          
                         ),
                       ],
                     ),
@@ -1445,8 +1447,7 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                   child: SizedBox(
                     width: 400,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center
-                      ,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
                           "Fuerzas con Dirección y Componentes",
@@ -1456,7 +1457,6 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         const SizedBox(height: 10),
                         Text(
                           mensajeComponentesC3,
-                          
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
