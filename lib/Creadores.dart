@@ -29,7 +29,7 @@ class Creadores extends StatelessWidget {
             _buildCard(
               context,
               "Deiby Ramirez",
-              const AssetImage('assets/imagenes/deiby.jpg'),
+              const AssetImage('assets/imagenes/deiby.jpeg'),
               "https://github.com/DeibyRamirez",
               "hero-deiby",
             ),
