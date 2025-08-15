@@ -1,9 +1,10 @@
-// ignore_for_file: use_super_parameters, library_private_types_in_public_api, unused_local_variable
+// ignore_for_file: use_super_parameters, library_private_types_in_public_api, unused_local_variable, non_constant_identifier_names, file_names
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
+import 'package:graficos_dinamicos/AR.dart';
 import 'package:graficos_dinamicos/Informacion.dart';
 import 'NotacionCientifica.dart';
 
@@ -227,7 +228,8 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
     mensajesumasC3 =
         "La suma de la fuerzas en X es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteXC3, 2)} (i) \n\nLa suma de la fuerzas en Y es:\n ${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteYC3, 2)} (j) ";
 
-    mensajeFresultanteC3 = "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC3, 2)} N";
+    mensajeFresultanteC3 =
+        "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC3, 2)} N";
   }
 
   double calcularFuerza(double q1, double q2, double r) {
@@ -424,11 +426,16 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                 elevation: 5,
                 child: Column(
                   children: [
-                    const Text(
-                      "Sentido de las Fuerzas",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Sentido de las Fuerzas",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(),
+                        ]),
                     SizedBox(
                       height: 280,
                       child: Flutter3DViewer(
@@ -618,10 +625,16 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Magnitud de la Fuerza Resultante",
-                        style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.bold),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Magnitud de la F. Resultante",
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(mostrarResultante: true),
+                        ],
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -953,11 +966,16 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                 elevation: 5,
                 child: Column(
                   children: [
-                    const Text(
-                      "Sentido de las Fuerzas",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Sentido de las Fuerzas",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(),
+                        ]),
                     SizedBox(
                       height: 280,
                       width: 400,
@@ -1130,11 +1148,17 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Magnitud de la Fuerza Resultante",
-                          style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.bold),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Magnitud de la F. Resultante",
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(mostrarResultante: true),
+                        ],
+                      ),
                         const SizedBox(height: 10),
                         Text(
                           mensajeFresultanteC2,
@@ -1357,11 +1381,16 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                 elevation: 5,
                 child: Column(
                   children: [
-                    const Text(
-                      "Sentido de las Fuerzas",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Sentido de las Fuerzas",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(),
+                        ]),
                     SizedBox(
                       height: 280,
                       width: 400,
@@ -1405,7 +1434,8 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                               },
                               child: Icon(estaPlay
                                   ? Icons.pause_outlined
-                                  : Icons.play_arrow_rounded)),
+                                  : Icons.play_arrow_rounded)
+                                  ),
                           const SizedBox(
                             width: 20,
                           ),
@@ -1533,10 +1563,16 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Magnitud de la Fuerza Resultante",
-                        style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.bold),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Magnitud de la F. Resultante",
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(mostrarResultante: true),
+                        ],
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -1604,6 +1640,28 @@ class _CalFuerzasIsoscelesState extends State<CalFuerzasIsosceles> {
           ),
         ),
       ),
+    );
+  }
+
+  // Definir el modeloAR para ser usado en la próxima pantalla AR
+  String get modeloAR => widget.combinacion3d;
+  String get modeloARResultante => widget.resultante3d;
+
+  Widget BotonAR({bool mostrarResultante = false}) {
+    // Selecciona el modelo a mostrar en AR según la condición
+    final String modeloSeleccionado =
+        mostrarResultante ? modeloARResultante : modeloAR;
+
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AR(modeloAR: modeloSeleccionado),
+          ),
+        );
+      },
+      child: const Icon(Icons.view_in_ar),
     );
   }
 }

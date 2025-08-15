@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  camera: ^0.10.5+9
   flutter_cube: ^0.1.1
   flutter_3d_controller: ^2.0.1
  

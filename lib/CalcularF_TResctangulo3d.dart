@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
+import 'package:graficos_dinamicos/AR.dart';
 import 'package:graficos_dinamicos/Informacion.dart';
 import 'NotacionCientifica.dart';
 
@@ -160,7 +161,8 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
 
     double fuerzaresultanteC2 = Fresultantecaso2(fuerza21signo, fuerza23signo);
 
-    mensajeFresultanteC2 = " ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteC2, 2)} N";
+    mensajeFresultanteC2 =
+        " ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteC2, 2)} N";
 
     /////////////////////////////////////////////
 
@@ -217,7 +219,8 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
     mensajesumasC3 =
         " La suma de la fuerzas en X es:\n ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteXC3, 2)} (i)\n La suma de la fuerzas en Y es:\n ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteYC3, 2)} (j)";
 
-    mensajeFresultanteC3 = " ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteC3, 2)} N";
+    mensajeFresultanteC3 =
+        " ${notacioncientifica.formatearNotacionCientifica(fuerzaresultanteC3, 2)} N";
   }
 
   double calcularFuerza(double q1, double q2, double r) {
@@ -424,11 +427,16 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                 elevation: 5,
                 child: Column(
                   children: [
-                    const Text(
-                      "Sentido de las Fuerzas",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Sentido de las Fuerzas",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(),
+                        ]),
                     SizedBox(
                       height: 280,
                       width: 400,
@@ -601,11 +609,17 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Magnitud de la Fuerza Resultante",
-                          style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.bold),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Magnitud de la F. Resultante",
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(mostrarResultante: true),
+                        ],
+                      ),
                         const SizedBox(height: 10),
                         Text(
                           mensajeFresultanteC1,
@@ -842,11 +856,18 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                         elevation: 5,
                         child: Column(
                           children: [
-                            const Text(
-                              "Sentido de las Fuerzas",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  const Text(
+                                    "Sentido de las Fuerzas",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  BotonAR(),
+                                ]),
                             SizedBox(
                               height: 280,
                               child: Flutter3DViewer(
@@ -1095,12 +1116,17 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Text(
-                                  "Magnitud de la Fuerza Resultante",
-                                  style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Magnitud de la F. Resultante",
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(mostrarResultante: true),
+                        ],
+                      ),
                                 const SizedBox(height: 10),
                                 Text(
                                   mensajeFresultanteC2,
@@ -1324,11 +1350,16 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                 elevation: 5,
                 child: Column(
                   children: [
-                    const Text(
-                      "Sentido de las Fuerzas",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Sentido de las Fuerzas",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(),
+                        ]),
                     SizedBox(
                       height: 280,
                       width: 400,
@@ -1501,11 +1532,17 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Magnitud de la Fuerza Resultante",
-                          style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.bold),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Magnitud de la F. Resultante",
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.bold),
+                          ),
+                          BotonAR(mostrarResultante: true),
+                        ],
+                      ),
                         const SizedBox(height: 10),
                         Text(
                           mensajeFresultanteC3,
@@ -1661,6 +1698,28 @@ class _CalFuerzasRectanguloState extends State<CalFuerzasRectangulo> {
           ],
         ),
       ),
+    );
+  }
+
+  // Definir el modeloAR para ser usado en la próxima pantalla AR
+  String get modeloAR => widget.combinacion3d;
+  String get modeloARResultante => widget.resultante3d;
+
+  Widget BotonAR({bool mostrarResultante = false}) {
+    // Selecciona el modelo a mostrar en AR según la condición
+    final String modeloSeleccionado =
+        mostrarResultante ? modeloARResultante : modeloAR;
+
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AR(modeloAR: modeloSeleccionado),
+          ),
+        );
+      },
+      child: const Icon(Icons.view_in_ar),
     );
   }
 }

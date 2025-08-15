@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
+import 'package:graficos_dinamicos/AR.dart';
 import 'package:graficos_dinamicos/Informacion.dart';
 import 'NotacionCientifica.dart';
 
@@ -127,13 +128,15 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
         " Fuerza entre cargas 1 y 2:\n ${notacionCientifica.formatearNotacionCientifica(fuerza12, 2)} N\n\n Fuerza entre cargas 1 y 3:\n ${notacionCientifica.formatearNotacionCientifica(fuerza13, 2)} N";
 
     mensajesignoC1 =
-        " Fuerza(1,2): ${notacionCientifica.formatearNotacionCientifica(fuerza12signo, 2) } N \n\nFuerza(1,3): ${notacionCientifica.formatearNotacionCientifica(fuerza13signo,2) } N ";
+        " Fuerza(1,2): ${notacionCientifica.formatearNotacionCientifica(fuerza12signo, 2)} N \n\nFuerza(1,3): ${notacionCientifica.formatearNotacionCientifica(fuerza13signo, 2)} N ";
 
-    mensajesumasC1 = "(${notacionCientifica.formatearNotacionCientifica(fuerza12signo, 2) } N) + (${notacionCientifica.formatearNotacionCientifica(fuerza13signo,2) } N)";
+    mensajesumasC1 =
+        "(${notacionCientifica.formatearNotacionCientifica(fuerza12signo, 2)} N) + (${notacionCientifica.formatearNotacionCientifica(fuerza13signo, 2)} N)";
 
     late double fuerzaresultanteC1 = Fresultante(fuerza12signo, fuerza13signo);
 
-    mensajeFresultanteC1 = "\n${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC1,2) } N";
+    mensajeFresultanteC1 =
+        "\n${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC1, 2)} N";
 
     ////////////////////////////////////////////
 
@@ -146,16 +149,18 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza23signo = fuerza23 * signo2;
 
     mensajeResultadoC2 =
-        " Fuerza entre cargas 2 y 1: ${notacionCientifica.formatearNotacionCientifica(fuerza21,2) } N\n\n Fuerza entre cargas 2 y 3: ${notacionCientifica.formatearNotacionCientifica(fuerza23,2) } N";
+        " Fuerza entre cargas 2 y 1: ${notacionCientifica.formatearNotacionCientifica(fuerza21, 2)} N\n\n Fuerza entre cargas 2 y 3: ${notacionCientifica.formatearNotacionCientifica(fuerza23, 2)} N";
 
     mensajesignoC2 =
-        " Fuerza(2,1) = ${notacionCientifica.formatearNotacionCientifica(fuerza21signo,2) } \n\nFuerza(2,3) = ${notacionCientifica.formatearNotacionCientifica(fuerza23signo,2) } ";
+        " Fuerza(2,1) = ${notacionCientifica.formatearNotacionCientifica(fuerza21signo, 2)} \n\nFuerza(2,3) = ${notacionCientifica.formatearNotacionCientifica(fuerza23signo, 2)} ";
 
-    mensajesumasC2 = "(${notacionCientifica.formatearNotacionCientifica(fuerza21signo,2) } N) + (${notacionCientifica.formatearNotacionCientifica(fuerza23signo,2) } N)";
+    mensajesumasC2 =
+        "(${notacionCientifica.formatearNotacionCientifica(fuerza21signo, 2)} N) + (${notacionCientifica.formatearNotacionCientifica(fuerza23signo, 2)} N)";
 
     double fuerzaresultanteC2 = Fresultante(fuerza21signo, fuerza23signo);
 
-    mensajeFresultanteC2 = "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC2,2) } N";
+    mensajeFresultanteC2 =
+        "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC2, 2)} N";
 
     /////////////////////////////////////////////
 
@@ -168,16 +173,18 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
     double fuerza32signo = fuerza32 * signo2;
 
     mensajeResultadoC3 =
-        " Fuerza entre cargas 3 y 1: ${notacionCientifica.formatearNotacionCientifica(fuerza31,2) } N\n\n Fuerza entre cargas 3 y 2: ${notacionCientifica.formatearNotacionCientifica(fuerza32,2) } N";
+        " Fuerza entre cargas 3 y 1: ${notacionCientifica.formatearNotacionCientifica(fuerza31, 2)} N\n\n Fuerza entre cargas 3 y 2: ${notacionCientifica.formatearNotacionCientifica(fuerza32, 2)} N";
 
     mensajesignoC3 =
-        " Fuerza(3,1):  = ${notacionCientifica.formatearNotacionCientifica(fuerza31signo,2) } N\n\nFuerza(3,2): = ${notacionCientifica.formatearNotacionCientifica(fuerza32signo,2) } N";
+        " Fuerza(3,1):  = ${notacionCientifica.formatearNotacionCientifica(fuerza31signo, 2)} N\n\nFuerza(3,2): = ${notacionCientifica.formatearNotacionCientifica(fuerza32signo, 2)} N";
 
-    mensajesumasC3 = "(${notacionCientifica.formatearNotacionCientifica(fuerza31signo,2) } N) + (${notacionCientifica.formatearNotacionCientifica(fuerza32signo,2) } N)";
+    mensajesumasC3 =
+        "(${notacionCientifica.formatearNotacionCientifica(fuerza31signo, 2)} N) + (${notacionCientifica.formatearNotacionCientifica(fuerza32signo, 2)} N)";
 
     double fuerzaresultanteC3 = Fresultante(fuerza32signo, fuerza31signo);
 
-    mensajeFresultanteC3 = "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC3,2) } N";
+    mensajeFresultanteC3 =
+        "${notacionCientifica.formatearNotacionCientifica(fuerzaresultanteC3, 2)} N";
 
     modelo3d(widget.carga1, widget.carga2, widget.carga3, widget.cargaTrabajo,
         fuerzaresultanteC1, fuerzaresultanteC2, fuerzaresultanteC3);
@@ -430,11 +437,18 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                         elevation: 5,
                         child: Column(
                           children: [
-                            const Text(
-                              "Sentido de las Fuerzas",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  const Text(
+                                    "Sentido de las Fuerzas",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  BotonAR(),
+                                ]),
                             SizedBox(
                               height: 300,
                               width: 400,
@@ -688,10 +702,18 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Text(
-                                "Fuerza Resultante",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  const Text(
+                                    "Fuerza Resultante",
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  BotonAR(mostrarResultante: true),
+                                ],
                               ),
                               Text(
                                 mapaseleccionado['resultados']
@@ -899,5 +921,27 @@ class _CalcularFLineal3dState extends State<CalcularFLineal3d> {
       // ignore: avoid_print
       print("Error al cargar modelos 3D: $e");
     }
+  }
+
+  // Definir el modeloAR para ser usado en la próxima pantalla AR
+  String get modeloAR => widget.combinacion3d;
+  String get modeloARResultante => resultante3d;
+
+  Widget BotonAR({bool mostrarResultante = false}) {
+    // Selecciona el modelo a mostrar en AR según la condición
+    final String modeloSeleccionado =
+        mostrarResultante ? modeloARResultante : modeloAR;
+
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AR(modeloAR: modeloSeleccionado),
+          ),
+        );
+      },
+      child: const Icon(Icons.view_in_ar),
+    );
   }
 }

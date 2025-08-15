@@ -53,13 +53,16 @@ Widget _buildCard(BuildContext context, String nombre,
     ImageProvider<Object> avatar, String githubUrl, String herotag) {
   return Center(
     child: Container(
-      color: Colors.black,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.black,
+      ),
       height: 400,
       width: 300,
       child: Card(
           elevation: 4,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
@@ -92,9 +95,14 @@ Widget _buildCard(BuildContext context, String nombre,
                 TextButton(
                     onPressed: () =>
                         _segundaPagina(context, nombre, avatar, herotag),
-                    child: const Text(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                        
+                     child: const   Text(
                       "Ver más",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white)
+                      ,
                     ))
               ],
             ),
